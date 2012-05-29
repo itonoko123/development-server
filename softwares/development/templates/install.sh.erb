@@ -1,0 +1,13 @@
+#!/bin/sh
+
+export http_proxy=""
+
+cd /var/lib/redmine-2.0.0
+
+bundle install --without rmagick postgresql mysql
+
+rake generate_secret_token
+
+RAILS_ENV=production rake db:migrate
+
+script/rails s -d -e production -p <%= redmine_port %>

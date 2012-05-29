@@ -1,0 +1,33 @@
+description: development server
+
+components:
+ - name: gerrit
+ - name: redmine
+ - name: jenkins
+
+component_dependencies:
+ - source_component: jenkins
+   dest_component: redmine
+ - source_component: redmine
+   dest_component: gerrit
+
+config_item_defaults:
+ - name: gerrit_port
+   value: 8080
+ - name: redmine_port
+   value: 3001
+ - name: jenkins_port
+   value: 8081
+   
+component_config_defaults:
+ - path: /var/lib/gerrit/etc/gerrit.config
+   component: gerrit
+ - path: /var/lib/redmine-2.0.0/install.sh
+   component: redmine
+ - path: /etc/default/jenkins
+   component: jenkins
+
+software_config_defaults:
+ 
+test_components:
+ - component: jenkins
