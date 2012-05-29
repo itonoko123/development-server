@@ -4,8 +4,8 @@ class development::gerrit::install {
     }
 
     file {
-        "/var/lib/gerrit-2.3.war":
-            source => "puppet:///modules/development/gerrit-2.3.war",
+        "/var/lib/gerrit-2.4.war":
+            source => "puppet:///modules/development/gerrit-2.4.war",
             mode => 644,
             require => Package[git-core];
 
@@ -16,9 +16,9 @@ class development::gerrit::install {
     }
 
     exec {
-        "java -jar /var/lib/gerrit-2.3.war init --batch -d /var/lib/gerrit":
+        "java -jar /var/lib/gerrit-2.4.war init --batch -d /var/lib/gerrit":
             alias => "start",
-            require => File["/var/lib/gerrit-2.3.war"];
+            require => File["/var/lib/gerrit-2.4.war"];
 
         "/var/lib/gerrit/bin/gerrit.sh stop -d /var/lib/gerrit":
             alias => "stop",

@@ -12,7 +12,7 @@ class development::gerrit::uninstall {
         "rm -r /var/lib/gerrit/*":
             require => Exec[stop];
 			
-        "rm /var/lib/gerrit-2.3.war":
+        "rm /var/lib/gerrit-2.4.war":
             require => Exec[stop];
 	}
 }
