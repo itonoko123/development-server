@@ -20,8 +20,13 @@ class development::gerrit::install {
             alias => "start",
             require => File["/var/lib/gerrit-2.3.war"];
 
-        "/var/lib/gerrit/bin/gerrit.sh restart -d /var/lib/gerrit":
+        "/var/lib/gerrit/bin/gerrit.sh stop -d /var/lib/gerrit":
+            alias => "stop",
             require => File["/var/lib/gerrit/etc/gerrit.config"];
+
+        "/var/lib/gerrit/bin/gerrit.sh start -d /var/lib/gerrit":
+            require => Exec[stop];
+
     }
 
 }
