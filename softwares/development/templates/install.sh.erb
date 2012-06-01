@@ -16,4 +16,6 @@ rake db:migrate_plugins RAILS_ENV=production
 
 rake redmine:plugins:migrate RAILS_ENV=production
 
+rake redmine:load_default_data RAILS_ENV=production
+
 script/rails s -d -e production -p <%= redmine_port %>
