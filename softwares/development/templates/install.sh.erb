@@ -18,6 +18,6 @@ bundle install --without rmagick postgresql mysql development test
 
 rake db:migrate_plugins RAILS_ENV=production
 
-rake redmine:load_default_data RAILS_ENV=production
+rake redmine:load_default_data REDMINE_LANG=ja RAILS_ENV=production
 
 ruby script/server -d -e production -p <%= redmine_port %>
