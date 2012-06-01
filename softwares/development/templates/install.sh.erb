@@ -6,8 +6,6 @@ cd /var/lib/redmine-1.4.2
 
 bundle install --without rmagick postgresql mysql development test
 
-gem install redmine_client
-
 rake generate_session_store
 
 RAILS_ENV=production rake db:migrate
