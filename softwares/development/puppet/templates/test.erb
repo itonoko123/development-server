@@ -1,0 +1,29 @@
+project = Project.new(
+  :name => "testproject",
+  :identifier => "test",
+  :description => "test"
+)
+
+if project.save
+ puts "create project"
+else
+ puts "error create project
+end
+
+setting = HudsonSettings.new(
+  :project_id => 2,
+  :url => "http://<%= jenkins %>:<%= jenkins_port %>/",
+  :job_filter => "testproject",
+  :show_compact => false,
+  :auth_user => "",
+  :auth_password => "",
+  :get_build_details => true,
+  :look_and_feel => "Hudson",
+  :url_for_plugin => ""
+)
+
+if setting.save
+ puts "create hudson setting"
+else
+ puts "error create hudson setting"
+end

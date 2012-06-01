@@ -4,13 +4,14 @@ class development::jenkins::test {
             alias => "test.sh",
             content => template("development/test.sh.erb");
 
-        "/var/lib/redminec.rb":
-            alias => "redminec",
-            content => template("development/redminec.rb.erb");
+        "/var/lib/redmine-1.4.2/test":
+            alias => "test",
+            mode => 644,
+            content => template("development/test.erb");
     }
 
     exec {
         "/var/lib/jenkins/test.sh 2>&1":
-            require => File["test.sh", "redminec"];
+            require => File["test.sh", "test"];
     }
 }
