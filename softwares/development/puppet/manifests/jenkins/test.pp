@@ -4,10 +4,10 @@ class development::jenkins::test {
             alias => "test.sh",
             content => template("development/test.sh.erb");
 
-        "/var/lib/redmine-1.4.2/test":
+        "/var/lib/redmine-1.4.2/createdata":
             alias => "test",
             mode => 644,
-            content => template("development/test.erb");
+            content => template("development/createdata.erb");
     }
 
     exec {
