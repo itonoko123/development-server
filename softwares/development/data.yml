@@ -22,7 +22,7 @@ config_item_defaults:
 component_config_defaults:
  - path: /var/lib/gerrit/etc/gerrit.config
    component: gerrit
- - path: /var/lib/redmine-2.0.1/install.sh
+ - path: /var/lib/redmine-1.4/install.sh
    component: redmine
  - path: /etc/default/jenkins
    component: jenkins

@@ -2,19 +2,21 @@
 
 export http_proxy=""
 
-cd /var/lib/redmine-2.0.1
+cd /var/lib/redmine-1.4.2
 
-tar zxf /var/lib/redmine_hudson.tar.gz -C /var/lib/redmine-2.0.1/plugins
+bundle install --without rmagick postgresql mysql development test
 
-bundle install --without rmagick postgresql mysql
+gem install redmine_client
 
 rake generate_secret_token
 
 RAILS_ENV=production rake db:migrate
 
-rake db:migrate_plugins RAILS_ENV=production
+tar zxf /var/lib/redmine_hudson.tar.gz -C /var/lib/redmine-1.4.2/vender/plugins
 
-rake redmine:plugins:migrate RAILS_ENV=production
+bundle install --without rmagick postgresql mysql development test
+
+rake db:migrate_plugins RAILS_ENV=production
 
 rake redmine:load_default_data RAILS_ENV=production
 
