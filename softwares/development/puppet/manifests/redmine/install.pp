@@ -31,7 +31,7 @@ class development::redmine::install {
             alias => "tar",
             require => File["/var/lib/redmine-1.4.2.tar.gz", "/var/lib/redmine_hudson.tar.gz"];
 
-        "/var/lib/redmine-2.0.1/install.sh":
+        "/var/lib/redmine-1.4.2/install.sh":
             require => File["/var/lib/redmine-1.4.2/install.sh"];
     }
 }
