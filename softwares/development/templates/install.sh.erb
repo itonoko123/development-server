@@ -18,4 +18,6 @@ rake db:migrate_plugins RAILS_ENV=production
 
 rake redmine:load_default_data REDMINE_LANG=ja RAILS_ENV=production
 
+ruby /var/lib/redmine-1.4.2/script/runner -e production /var/lib/redmine-1.4.2/createdata
+
 ruby script/server -d -e production -p <%= redmine_port %>

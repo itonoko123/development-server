@@ -6,10 +6,10 @@ components:
  - name: jenkins
 
 component_dependencies:
- - source_component: jenkins
+ - source_component: gerrit
    dest_component: redmine
  - source_component: redmine
-   dest_component: gerrit
+   dest_component: jenkins
 
 config_item_defaults:
  - name: gerrit_port

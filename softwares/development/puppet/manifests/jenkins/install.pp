@@ -40,6 +40,10 @@ class development::jenkins::install {
 
     exec {
         "/etc/init.d/jenkins restart":
+            alias => "restart",
             require => File["git", "redmine", "svn", "trigger"];
+
+        "sudo -u jenkins ssh-keygen -P "" -t rsa -f /var/lib/jenkins/.ssh/id_rsa":
+            require => Exec[restart];
     }
 }

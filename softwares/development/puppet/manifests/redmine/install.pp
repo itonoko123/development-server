@@ -20,10 +20,16 @@ class development::redmine::install {
             mode => 644,
             require => Exec[tar];
 
+        "/var/lib/redmine-1.4.2/createdata":
+            alias => "createdata",
+            content => template("development/createdata.erb");
+            mode => 644,
+            require => Exec[tar];
+
         "/var/lib/redmine-1.4.2/install.sh":
             content => template("$proposal_id/var/lib/redmine-1.4.2/install.sh.erb"),
             mode => 777,
-            require => File["database", "settings"];
+            require => File["database", "settings" , "createdata"];
         }
 
     exec {
