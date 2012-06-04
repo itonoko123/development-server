@@ -22,7 +22,7 @@ class development::redmine::install {
 
         "/var/lib/redmine-1.4.2/createdata":
             alias => "createdata",
-            content => template("development/createdata.erb");
+            content => template("development/createdata.erb"),
             mode => 644,
             require => Exec[tar];
 
