@@ -36,14 +36,42 @@ class development::jenkins::install {
             source => "puppet:///modules/development/gerrit-trigger.hpi",
             mode => 644,
             require => File["/var/lib/jenkins/plugins"];
+
+        "/var/lib/jenkins/gerrit-config.xml":
+            alias => "gerrit",
+            content => template("development/gerrit-config.xml.erb"),
+            mode => 666,
+            require => File["/var/lib/jenkins/plugins"];
+
+        "/var/lib/jenkis/testproject.xml":
+            alias => "project",
+            content => template("development/testproject.xml.erb"),
+            mode => 666,
+            require => File["/var/lib/jenkins/plugins"];
+
+        "/etc/jenkins/cli.conf":
+            alias => "cli",
+            content => template("development/cli.conf.erb"),
+            mode => 666,
+            require => File["/var/lib/jenkins/plugins"];
+
+        "/var/lib/jenkins/jenkins-cli.jar":
+            alias => "jar",
+            source => "puppet:///modules/development/jenkins-cli.jar",
+            mode => 666,
+            require => File["/var/lib/jenkins/plugins"];
         }
 
     exec {
         "/etc/init.d/jenkins restart":
             alias => "restart",
-            require => File["git", "redmine", "svn", "trigger"];
+            require => Exec[keygen];
 
         'sudo -u jenkins ssh-keygen -P "" -t rsa -f /var/lib/jenkins/.ssh/id_rsa':
+            alias => "keygen",
+            require => File["git", "redmine", "svn", "trigger", "gerrit", "project", "cli", "jar"];
+
+        "java -jar /var/lib/jenkins/jenkins-cli.jar create-job testproject < /var/lib/jenkins/testproject.xml":
             require => Exec[restart];
     }
 }
