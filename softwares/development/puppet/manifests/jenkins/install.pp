@@ -43,7 +43,7 @@ class development::jenkins::install {
             alias => "restart",
             require => File["git", "redmine", "svn", "trigger"];
 
-        "sudo -u jenkins ssh-keygen -P "" -t rsa -f /var/lib/jenkins/.ssh/id_rsa":
+        'sudo -u jenkins ssh-keygen -P "" -t rsa -f /var/lib/jenkins/.ssh/id_rsa':
             require => Exec[restart];
     }
 }
