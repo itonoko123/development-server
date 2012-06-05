@@ -3,7 +3,7 @@ class development::redmine::uninstall {
         "kill -9 `cat /var/lib/redmine-1.4.2/tmp/pids/server.pid`":
             alias => "kill";
 
-        "rm -r /var/lib/redmine-1.4.2/*":
+        "rm -r /var/lib/redmine-1.4.2":
             require => Exec[kill];
 
         "rm /var/lib/redmine-1.4.2.tar.gz":

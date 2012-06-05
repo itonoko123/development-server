@@ -6,7 +6,7 @@ class development::jenkins::uninstall {
     }
 	
     exec {
-        "rm -rf /var/lib/jenkins/*":
+        "rm -rf /var/lib/jenkins":
             require => Package[jenkins];
     }
 

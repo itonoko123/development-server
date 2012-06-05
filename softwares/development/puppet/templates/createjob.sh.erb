@@ -1,5 +1,5 @@
 #!/bin/bash
-
+sleep 30
 export JENKINS_URL=http://<%= jenkins  %>:<%= jenkins_port %>
-
+sudo -u jenkins ssh-keygen -P "" -t rsa -f /var/lib/jenkins/.ssh/id_rsa
 java -jar /var/lib/jenkins/jenkins-cli.jar create-job testproject < /var/lib/jenkins/testproject.xml

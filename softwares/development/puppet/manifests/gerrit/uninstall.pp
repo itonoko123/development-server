@@ -9,7 +9,7 @@ class development::gerrit::uninstall {
             alias => "stop",
             require => Package[git-core];
 
-        "rm -r /var/lib/gerrit/*":
+        "rm -r /var/lib/gerrit":
             require => Exec[stop];
 			
         "rm /var/lib/gerrit-2.4.war":
