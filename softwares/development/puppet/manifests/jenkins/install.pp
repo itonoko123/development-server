@@ -37,9 +37,9 @@ class development::jenkins::install {
             mode => 644,
             require => File["/var/lib/jenkins/plugins"];
 
-        "/var/lib/jenkins/gerrit-config.xml":
+        "/var/lib/jenkins/gerrit-trigger.xml":
             alias => "gerrit",
-            content => template("development/gerrit-config.xml.erb"),
+            content => template("development/gerrit-trigger.xml.erb"),
             mode => 666,
             require => File["/var/lib/jenkins/plugins"];
 
