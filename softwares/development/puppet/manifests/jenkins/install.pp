@@ -43,7 +43,7 @@ class development::jenkins::install {
             mode => 666,
             require => File["/var/lib/jenkins/plugins"];
 
-        "/var/lib/jenkis/testproject.xml":
+        "/var/lib/jenkins/testproject.xml":
             alias => "project",
             content => template("development/testproject.xml.erb"),
             mode => 666,
