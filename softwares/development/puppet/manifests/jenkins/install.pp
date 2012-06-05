@@ -49,9 +49,9 @@ class development::jenkins::install {
             mode => 666,
             require => File["/var/lib/jenkins/plugins"];
 
-        "/etc/jenkins/cli.conf":
-            alias => "cli",
-            content => template("development/cli.conf.erb"),
+        "/etc/jenkins/createjob.sh":
+            alias => "sh",
+            content => template("development/createjob.sh.erb"),
             mode => 666,
             require => File["/var/lib/jenkins/plugins"];
 
@@ -69,9 +69,9 @@ class development::jenkins::install {
 
         'sudo -u jenkins ssh-keygen -P "" -t rsa -f /var/lib/jenkins/.ssh/id_rsa':
             alias => "keygen",
-            require => File["git", "redmine", "svn", "trigger", "gerrit", "project", "cli", "jar"];
+            require => File["git", "redmine", "svn", "trigger", "gerrit", "project", "sh", "jar"];
 
-        "java -jar /var/lib/jenkins/jenkins-cli.jar create-job testproject < /var/lib/jenkins/testproject.xml":
+        "/var/lib/jenkins/createjob.sh":
             require => Exec[restart];
     }
 }
